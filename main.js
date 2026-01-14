@@ -1,38 +1,29 @@
-// import * as THREE from 'three';
-
-// const scene = new THREE.Scene();
-// const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-// const renderer = new THREE.WebGLRenderer();
-// renderer.setSize( window.innerWidth, window.innerHeight );
-// document.body.appendChild( renderer.domElement );
-
+import './styles.css';
 import * as THREE from 'three';
 
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
-
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-renderer.setSize( window.innerWidth, window.innerHeight );
-renderer.setClearColor(0xdddddd, 0.2); // Transparent background
-
-document.body.appendChild( renderer.domElement );
-//const controls = new OrbitControls( camera, renderer.domElement );
-const loader = new GLTFLoader();
-
 // const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 // const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 // const cube = new THREE.Mesh( geometry, material );
 // scene.add( cube );
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-camera.position.z = 50;
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize( window.innerWidth, window.innerHeight );
+//renderer.setClearColor(0xdddddd, 0.2); // Transparent background
 
 // Set the scene background color
 // scene.background = new THREE.Color(0xdddddd);
+
+document.body.appendChild( renderer.domElement );
+const controls = new OrbitControls( camera, renderer.domElement );
+const loader = new GLTFLoader();
+
+camera.position.z = 60;
+camera.position.x = -10;
+camera.position.y = 0;
 
 // Add some lighting for GLTF models
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.7); // Soft white light
@@ -68,9 +59,17 @@ window.addEventListener('scroll', () => {
 // Update max scroll on load and resize
 window.addEventListener('load', updateMaxScroll);
 window.addEventListener('resize', updateMaxScroll);
+
 // Initial calculation
 updateMaxScroll();
 
+// const loaderBG = new THREE.TextureLoader();
+// loaderBG.load('/images/BBCBG.png', function(texture) {
+//   scene.background = texture;
+// });
+
+
+// Load Model
 loader.load('new_balance_997/scene.gltf', function(gltf) {
   console.log('GLTF loaded successfully:', gltf);
   renderer.setAnimationLoop( animate );
@@ -116,7 +115,6 @@ loader.load('new_balance_997/scene.gltf', function(gltf) {
       // Optional: Add some X rotation for more dynamic effect
       shoeModel.rotation.x = scrollProgress * Math.PI * 2;
       // shoeModel.rotation.z = scrollProgress * Math.PI * 2 * 0.3;
-
     }
 
     renderer.render( scene, camera, );
@@ -126,5 +124,3 @@ loader.load('new_balance_997/scene.gltf', function(gltf) {
 }, function(error) {
     console.error('Error loading GLTF:', error);
 });
-
-

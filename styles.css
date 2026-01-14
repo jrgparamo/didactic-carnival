@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Bebas Neue;
+    src: url(/BebasNeue-Regular.otf);
+}
+
+:root {
+    --canvas-z-index: 10;
+    --content-z-index: 1;
+    --primary-color: #3030302b;
+    --secondary-color: #fff;
+}
+
+html {
+    /* scroll-behavior: smooth; */
+    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    line-height: 1;
+}
+
+body {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* Add a subtle overlay to further emphasize the model */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center,
+        transparent 30%,
+        rgba(0,0,0,0.2) 70%
+    );
+    z-index: 5;
+    pointer-events: none;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 40px 0 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+
+header.shoe-title {
+    margin: 10px 0 0 90px;
+    z-index: 15;
+    pointer-events: none;
+    position: absolute;
+    top: 50%
+}
+
+header.shoe-title p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 55, 0);
+    font-weight: 100;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.main-content {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.3) 20%,
+        rgba(0,0,0,0.6) 50%,
+        rgba(0,0,0,0.8) 80%,
+        rgba(0,0,0,0.9) 100%
+    );
+    padding: 20px;
+    margin-top: 100vh;
+    backdrop-filter: blur(1px);
+}
+
+section {
+    display: flex;
+    padding: 50px 20px;
+    margin: 0 auto;
+    text-align: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+section:hover {
+    opacity: 1;
+}
+
+section.new-drop {
+    max-width: unset;
+    padding: 2rem;
+    align-items: end;
+}
+
+section.new-drop img {
+    width: 100%;
+}
+
+section.content {
+    padding: 2rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    font-size: 3rem;
+    margin: 3rem 0 5rem 0;
+}
